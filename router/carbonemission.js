@@ -184,14 +184,14 @@ router.get('/lastThreeDays', async (req, res) => {
     }
 
     for(let i of data2){
-      console.log(i.carbonemission)
+     // console.log(i.carbonemission)
       emission2 += parseFloat(i.carbonemission)
     }
 
     for(let i of data3){
       emission3 += parseFloat(i.carbonemission)
     }
-    console.log(data1.length,data2.length,data3.length)
+    //console.log(data1.length,data2.length,data3.length)
     let data = {emission1,emission2,emission3}
     if (data) {
           response.status = 200,

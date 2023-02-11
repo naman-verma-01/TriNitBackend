@@ -11,7 +11,7 @@ router.post('/login', async (req, res) => {
     let response = {}
     try {
 
-        const data = await CarbonUser.find({ where: { userid: req.body.email } })
+        const data = await CarbonUser.find({ userid: req.body.email  })
         console.log(data)
         if (data[0] != null) {
             var comparering = await bcrypt.compare(req.body.password, data[0].password);
