@@ -172,25 +172,26 @@ router.get('/lastThreeDays', async (req, res) => {
     let date3 = new Date(year,month,day-1)
     let date4 = new Date(year,month,day-2)
 
-    let data1 = await Carbon.find({userid:req.query.userid, "createdAt":{ '$gte':date2, '$lte':date1 }})
-    let data2 = await Carbon.find({userid:req.query.userid,"createdAt":{ '$gte':date3, '$lte':date2 }})
-    let data3 = await Carbon.find({userid:req.query.userid,"createdAt":{ '$gte':date4, '$lte':date3 }})
+    let data1 = await Carbon.find({userid:req.query.userid, "date":{ '$gte':date2, '$lte':date1 }})
+    let data2 = await Carbon.find({userid:req.query.userid,"date":{ '$gte':date3, '$lte':date2 }})
+    let data3 = await Carbon.find({userid:req.query.userid,"date":{ '$gte':date4, '$lte':date3 }})
     
     
-    console.log(data1,data2,data3)
+  //  console.log(data1,data2,data3)
 
     for(let i of data1){
       emission1 += parseFloat(i.carbonemission)
     }
 
     for(let i of data2){
+      console.log(i.carbonemission)
       emission2 += parseFloat(i.carbonemission)
     }
 
     for(let i of data3){
       emission3 += parseFloat(i.carbonemission)
     }
-
+    console.log(data1.length,data2.length,data3.length)
     let data = {emission1,emission2,emission3}
     if (data) {
           response.status = 200,
