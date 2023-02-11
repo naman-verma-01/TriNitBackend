@@ -6,37 +6,25 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 router.post(
-  '/postdata',
-  async (req, res) => {
-    console.log(req.body);
-    let { userid, webpage, datatransferredingb } = req.body;
-    let count = 0, totaldata = 0;
-    let website = await Carbon.find({ userid: userid, webpage: webpage });
-    console.log(website.length);
-    console.log(website);
-    if (website.length > 0) {
-      console.log(website[website.length - 1]);
-      count = parseInt(website[website.length - 1].count);
-      totaldata = parseInt(website[website.length - 1].totaldata);
-    }
-    //         await Carbon.find({userid:userid,webpage:webpage})
-    //   .sort({date: -1})
-    //   .limit(1)
-    //   .exec(function(err, result) {
-    //     if (err) {
-    //       console.log(err);
-    //     } else {
-    //         count=parseInt(result[0].count);
-    //         totaldata=parseInt(result[0].totaldata);
-    //       console.log(result[0]);
-    //     }
-    //   });
-    count = count + 1;
-    totaldata = totaldata + parseInt(datatransferredingb);
-    let carbonemission = parseInt(datatransferredingb) * 11;
-    let status = ((carbonemission < 11) ? 2 : ((carbonemission < 20) ? 1 : 0));
-    console.log(status);
-    let carbondata;
+    '/postdata',
+    async(req, res) => {
+        console.log(req.body);
+        let {userid,webpage,datatransferredingb}=req.body;
+        let count=0,totaldata=0;
+        let website = await Carbon.find({userid:userid,webpage:webpage});
+        console.log(website.length);
+        console.log(website);
+        if(website.length>0){
+            console.log(website[website.length-1]);
+            count=parseFloat(website[website.length-1].count);
+            totaldata=parseFloat(website[website.length-1].totaldata);
+        }
+        count=count+1;
+        totaldata=totaldata+parseFloat(datatransferredingb);
+        let carbonemission=parseFloat(datatransferredingb)*11;
+        let status=((carbonemission<11)?2:((carbonemission<20)?1:0));
+        console.log(status);
+        let carbondata;
     //   try{
     carbondata = await Carbon.create({
       userid: userid,
