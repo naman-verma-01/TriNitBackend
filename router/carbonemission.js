@@ -55,10 +55,10 @@ router.post(
     },
   );
 
-  router.get('/getdata',
+  router.get('/getdata/:userid',
     async(req,res)=>{
-          console.log(req.body);
-          let {userid}=req.body;
+          console.log(req.params);
+          let userid=req.params.userid;
           Carbon.find({ userid: userid }, (err, results) => {
             if (err) {
                 res.status(400).json({error:"there has a error in your code."});
@@ -67,6 +67,13 @@ router.post(
               res.status(200).json({results});
             }
           });
+    }
+  );
+  router.get('/getalldata',
+    async(req,res)=>{
+          let alldata=await Carbon.find().sort({"totaldata":-1});
+         console.log(alldata);
+         res.status(200).json({alldata});
     }
   );
   module.exports = router;
