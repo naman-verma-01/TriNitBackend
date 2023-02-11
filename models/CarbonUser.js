@@ -10,6 +10,9 @@ const carbonUserschema = new Schema({
     password:{
         type:String,
     },
+    overAllEmission:{
+        type:Number,
+    },
    date:{
         type:Date,
         default:Date.now

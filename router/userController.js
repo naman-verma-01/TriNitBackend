@@ -42,7 +42,7 @@ router.post('/signup', async (req, res) => {
 
         const hashpass = await bcrypt.hash(req.body.password, 10);
 
-        const user = await new CarbonUser({ userid: req.body.email, password: hashpass })
+        const user = await new CarbonUser({ userid: req.body.email, password: hashpass,overAllEmission:0 })
 
         const data = await user.save()
 
