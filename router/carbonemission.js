@@ -16,24 +16,12 @@ router.post(
         console.log(website);
         if(website.length>0){
             console.log(website[website.length-1]);
-            count=parseInt(website[website.length-1].count);
-            totaldata=parseInt(website[website.length-1].totaldata);
+            count=parseFloat(website[website.length-1].count);
+            totaldata=parseFloat(website[website.length-1].totaldata);
         }
-//         await Carbon.find({userid:userid,webpage:webpage})
-//   .sort({date: -1})
-//   .limit(1)
-//   .exec(function(err, result) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//         count=parseInt(result[0].count);
-//         totaldata=parseInt(result[0].totaldata);
-//       console.log(result[0]);
-//     }
-//   });
         count=count+1;
-        totaldata=totaldata+parseInt(datatransferredingb);
-        let carbonemission=parseInt(datatransferredingb)*11;
+        totaldata=totaldata+parseFloat(datatransferredingb);
+        let carbonemission=parseFloat(datatransferredingb)*11;
         let status=((carbonemission<11)?2:((carbonemission<20)?1:0));
         console.log(status);
         let carbondata;
