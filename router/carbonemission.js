@@ -132,23 +132,24 @@ router.get('/getUserRanking',
     var otherUserEmission = 0
     var UserEmission = 0
     
-    Carbon.find({ }, (err, results) => {
+    Carbon.find({ }, async(err, results) => {
       if (err) {
         res.status(400).json({ error: "there has a error in your code." });
       } else {
 
-        console.log(results);
+      //  console.log(results);
+        var totalUser = await CarbonUser.countDocuments()
         for(let el of results){
-          console.log(el.carbonemission)
+        //  console.log(el.carbonemission)
           if(el.userid === userid){
-            UserEmission += el.carbonemission
+            UserEmission += parseFloat(el.carbonemission)
           }else{
-            otherUserEmission += el.carbonemission
+            otherUserEmission += parseFloat(el.carbonemission)
           }
         }
 
         //results = results.sort((a, b) => parseInt(a.count) - parseInt(b.count))
-        res.status(200).json({UserEmission, otherUserEmission});
+        res.status(200).json({UserEmission, otherUserEmission,totalUser});
       }
     });
   }
