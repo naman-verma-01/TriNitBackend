@@ -100,4 +100,24 @@ router.get('/getCurrentTab/:userid',
     });
   }
 );
+
+
+router.get('/getWebpageDetail',
+  async (req, res) => {
+    
+    let userid = req.query.user;
+    let webpage = req.query.webpage;
+    
+    Carbon.find({ userid: userid, webpage:webpage }, (err, results) => {
+      if (err) {
+        res.status(400).json({ error: "there has a error in your code." });
+      } else {
+        console.log(results);
+        res.status(200).json({ results });
+      }
+    });
+  }
+);
+
+
 module.exports = router;

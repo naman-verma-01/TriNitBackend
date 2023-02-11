@@ -4,7 +4,8 @@ const {Schema} = mongoose;
 const carbonUserschema = new Schema({
     userid:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     password:{
         type:String,
