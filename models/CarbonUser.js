@@ -1,0 +1,20 @@
+const mongoose = require('mongoose');
+const {Schema} = mongoose;
+
+const carbonUserschema = new Schema({
+    userid:{
+        type:String,
+        required:true
+    },
+    password:{
+        type:String,
+    },
+   date:{
+        type:Date,
+        default:Date.now
+    }
+})
+
+const CarbonUser = mongoose.model('CarbonUser',carbonUserschema);
+CarbonUser.createIndexes();
+module.exports = CarbonUser;
