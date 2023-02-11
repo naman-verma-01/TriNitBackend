@@ -37,5 +37,4 @@ const carbonemissionschema = new Schema({
 })
 
 const Carbon = mongoose.model('Carbon',carbonemissionschema);
-Carbon.createIndexes();
 module.exports = Carbon;

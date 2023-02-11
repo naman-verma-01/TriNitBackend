@@ -17,5 +17,4 @@ const carbonUserschema = new Schema({
 })
 
 const CarbonUser = mongoose.model('CarbonUser',carbonUserschema);
-CarbonUser.createIndexes();
 module.exports = CarbonUser;
