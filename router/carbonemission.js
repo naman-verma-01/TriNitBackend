@@ -112,7 +112,9 @@ router.get('/getWebpageDetail',
       if (err) {
         res.status(400).json({ error: "there has a error in your code." });
       } else {
+
         console.log(results);
+        results = results.sort((a,b) => parseInt(a.count) - parseInt(b.count))
         res.status(200).json({ results });
       }
     });
